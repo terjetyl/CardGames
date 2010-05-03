@@ -1,0 +1,5 @@
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\CardGames\bin\Release\CardGames.dll
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\CardGames\bin\Release\CardGames.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\CardGames\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\CardGames\obj\Release\CardGames.dll
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\CardGames\obj\Release\CardGames.pdb

@@ -1,0 +1,10 @@
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\bin\Release\BlackJackWinForms.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\bin\Release\BlackJackWinForms.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\bin\Release\CardGames.dll
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\bin\Release\CardGames.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\obj\Release\BlackJackWinForms.BlackJack.resources
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\obj\Release\BlackJackWinForms.Properties.Resources.resources
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\obj\Release\BlackJackWinForms.csproj.GenerateResource.Cache
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\obj\Release\BlackJackWinForms.exe
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2008\Projects\CardGames\BlackJackWinForms\obj\Release\BlackJackWinForms.pdb
