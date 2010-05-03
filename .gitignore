@@ -1,5 +1,10 @@
-# ignore bin and obj folders
+# Typical ignored files in a Visual Studio project
+
+# bin and obj folders
 bin/
 obj/
+
+# .Publish.xml files
+*.Publish.xml
 
 
