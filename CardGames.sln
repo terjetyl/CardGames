@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Web Developer Express 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGames", "CardGames\CardGames.csproj", "{AE6B426A-BC1D-4F43-ABB8-ED3BD286C4E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJackOnline", "BlackJackOnline\BlackJackOnline.csproj", "{FD46A3CF-20D8-4E35-B75D-79E385C01B18}"
