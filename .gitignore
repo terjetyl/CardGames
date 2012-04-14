@@ -8,3 +8,6 @@ obj/
 *.Publish.xml
 
 
+# visual studio user settings files
+*.suo
+*.user
