@@ -1,7 +1,0 @@
-H1, H2, H3, H4, H5, H6, ADDRESS, CAPTION, CITE, CODE, DFN, TH, VAR, KBD, PRE, SAMP, TT, SELECT, INPUT, BUTTON, TEXTAREA
-{
-	#font-family: expression(this.singleExFf?this.singleExFf:(function(t)\7b return(t.singleExFf=t.parentNode.currentStyle.fontFamily)\7d )(this));
-	#font-style: expression(this.singleExFs?this.singleExFs:(function(t)\7b return(t.singleExFs=t.parentNode.currentStyle.letterSpacing)\7d )(this));
-	#font-weight: expression(this.singleExFw?this.singleExFw:(function(t)\7b return(t.singleExFw=t.parentNode.currentStyle.fontWeight)\7d )(this));
-	#letter-spacing: expression(this.singleExLs?this.singleExLs:(function(t)\7b return(t.singleExLs=t.parentNode.currentStyle.letterSpacing)\7d )(this));
-}
