@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CardGames
+﻿namespace CardGames
 {
     /// <summary>
     /// A card with a particular suit and rank.
     /// </summary>
     public class Card
     {
-        private Rank rank = new Rank();
-        private Suit suit = new Suit();
+        private readonly Rank _rank = new Rank();
+        private readonly Suit _suit = new Suit();
+
         public Visibility Visibility
         {
             get;
@@ -20,22 +16,22 @@ namespace CardGames
 
         // The suit and rank of a card should be publically gettable, but not settable (you cannot change a card in real life).
         // They should also be internal, so that the values of hidden cards cannot be seen in the presentation layer.
-        internal Rank Rank
+        public Rank Rank
         {
-            get { return rank; }
+            get { return _rank; }
         }
-        internal Suit Suit
+        public Suit Suit
         {
-            get { return suit; }
+            get { return _suit; }
         }
 
         public string Name
         {
             get
             {
-                if (Visibility == Visibility.Public)
+                if (Visibility == Visibility.Open)
                 { 
-                    return rank.ToString() + " of " + suit.ToString(); 
+                    return _rank.ToString() + " of " + _suit.ToString(); 
                 }
                 else
                 {
@@ -48,10 +44,10 @@ namespace CardGames
         {
             get
             {
-                if (Visibility == Visibility.Public)
+                if (Visibility == Visibility.Open)
                 {
                     string strRank = "";
-                    switch (rank.ToString())
+                    switch (_rank.ToString())
                     {
                         case "Ace":
                             strRank = "a";
@@ -94,7 +90,7 @@ namespace CardGames
                             break;
                     }
 
-                    return suit.ToString().ToLower()[0].ToString() + strRank;
+                    return _suit.ToString().ToLower()[0].ToString() + strRank;
                 }
                 else
                 {
@@ -106,13 +102,13 @@ namespace CardGames
         /// <summary>
         /// Creates a new card.
         /// </summary>
-        /// <param name="Rank">The new card's rank.</param>
-        /// <param name="Suit">The new card's suit.</param>
-        public Card(Rank Rank, Suit Suit)
+        /// <param name="rank">The new card's rank.</param>
+        /// <param name="suit">The new card's suit.</param>
+        public Card(Rank rank, Suit suit)
         {
-            rank = Rank;
-            suit = Suit;
-            Visibility = Visibility.Public;
+            _rank = rank;
+            _suit = suit;
+            Visibility = Visibility.Open;
         }
 
     }

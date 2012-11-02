@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<input type="text" id="name1" placeholder="Player1"/><br />
+<input type="text" id="name2" placeholder="Player2"/><br />
+<button id="startBtn">Start game</button>
+
+<div class="hand" data-bind="foreach: cards">
+    <img data-bind="attr:{ src: ('/Images/cards/' + ShortName[1] + ShortName[0] + '.gif'), alt: Name, title: Name }" src="" alt=""/>
+</div>
+
+@section scripts
+{
+    <script src="/Scripts/jquery.signalR-0.5.3.js" type="text/javascript"> </script>
+        <script src="/signalr/hubs" type="text/javascript"> </script>
+    <script type="text/javascript">
+
+        var viewModel = function(cards) {
+            this.cards = ko.observableArray(cards);
+        };
+
+        $(function () {
+                
+            var game = $.connection.cardHub;
+            var name1 = $('#name1').val();
+            var name2 = $('#name2').val();
+
+            game.drawHand = function (name, hand) {
+                console.log(hand);
+                if (name != name1) {
+                    var vm = new viewModel(hand.Cards);
+                    ko.applyBindings(vm);
+                }
+            };
+            
+            game.drawHandCaller = function (hand) {
+                var vm = new viewModel(hand.Cards);
+                ko.applyBindings(vm);
+            };
+            $('#startBtn').click(function() {
+                game.startGame(name1, name2);
+            });
+                
+            // Start the connection
+            $.connection.hub.start();
+        });
+    </script>
+}

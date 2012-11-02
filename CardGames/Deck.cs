@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
 
 namespace CardGames
 {
@@ -12,14 +9,14 @@ namespace CardGames
     public class Deck
     {
         // A deck is a list of cards.
-        private List<Card> cards = new List<Card>();
+        private readonly List<Card> _cards = new List<Card>();
 
         /// <summary>
         /// Gets the list of cards in the deck.
         /// </summary>
         public List<Card> Cards
         {
-            get { return cards; }
+            get { return _cards; }
         }
 
         /// <summary>
@@ -32,8 +29,8 @@ namespace CardGames
             {
                 foreach (String suit in Enum.GetNames(typeof(Suit)))
                 {
-                    Card card = new Card((Rank)Enum.Parse(typeof(Rank), rank), (Suit)Enum.Parse(typeof(Suit), suit));
-                    cards.Add(card);
+                    var card = new Card((Rank)Enum.Parse(typeof(Rank), rank), (Suit)Enum.Parse(typeof(Suit), suit));
+                    _cards.Add(card);
                 }
             }
         }
@@ -55,7 +52,7 @@ namespace CardGames
         {
             for (int i = 0; i < repetitions; i++)
             {
-                shuffle<Card>(cards);
+                shuffle<Card>(_cards);
             }
         }
 
@@ -65,7 +62,7 @@ namespace CardGames
         private void shuffle<T>(List<T> list)
         {
             // create a new random object to help us generate random numbers
-            Random rnd = new Random();
+            var rnd = new Random();
 
             // get the number of cards in the deck
             int n = list.Count;
@@ -80,6 +77,38 @@ namespace CardGames
                 T value = list[k];
                 list[k] = list[n];
                 list[n] = value;
+            }
+        }
+
+        public Card DealCard()
+        {
+            return Cards.Pop();
+        }
+    }
+
+    public static class ExtensionMethods
+    {
+         public static T Pop<T>(this List<T> theList)
+         {
+             var local = theList[0];
+             theList.Remove(local);
+             return local;
+         }
+      
+        public static void Push<T>(this List<T> theList, T item)
+        {
+            theList.Add(item);
+        }
+
+        public static IEnumerable<T> FindDuplicates<T>(this IEnumerable<T> enumerable)
+        {
+            var hashset = new HashSet<T>();
+            foreach (var cur in enumerable)
+            {
+                if (!hashset.Add(cur))
+                {
+                    yield return cur;
+                }
             }
         }
     }

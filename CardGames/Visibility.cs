@@ -5,7 +5,7 @@
     /// </summary>
     public enum Visibility
     {
-        Public = 0,
-        Private = 1,
+        Open = 0,
+        Closed = 1,
     }
 }

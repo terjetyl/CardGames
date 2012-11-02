@@ -1,0 +1,355 @@
+/*+reset {*/
+*
+{
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+BODY
+{
+	font-size: 15pt;
+	font-family: sans-serif;
+	line-height: 1.5;
+	/*[empty]letter-spacing:;*/
+	/*+reset-optimize:no-scripts;*/
+}
+H1, H2, H3, H4, H5, H6, ADDRESS, CAPTION, CITE, CODE, DFN, TH, VAR, KBD, PRE, SAMP, TT, SELECT, INPUT, BUTTON, TEXTAREA
+{
+	font-size: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	letter-spacing: inherit;
+	#font-family: sans-serif;
+	#font-style: normal;
+	#font-weight: normal;
+	/*[empty]#letter-spacing:;*/
+}
+TH
+{
+	text-align: left;
+}
+TABLE
+{
+	border-spacing: 0;
+}
+TR, TD, TH
+{
+	position: static;
+}
+INPUT[type=hidden]
+{
+	display: none !important;
+}
+FIELDSET, IMG
+{
+	border: 0;
+}
+/*+}*/
+BODY
+{
+}
+DIV.clear
+{
+	clear: both;
+}
+DIV#outerDiv
+{
+	width: 770px;
+	margin: 0 auto;
+	background: #008000;
+	/*[disabled]margin-top:-16px;*/
+}
+DIV#header
+{
+	height: 80px;
+	background: #000000;
+	font: 30pt Helvetica;
+	color: #FF0000;
+	padding: 20px 0 0 20px;
+}
+DIV.hand
+{
+	margin: 0 auto;
+	width: 600px;
+	height: 100px;
+	padding: 30px 0;
+}
+DIV.scores
+{
+	float: right;
+	display: block;
+	padding: 25px 0 0;
+}
+SPAN.total
+{
+	float: left;
+	display: block;
+	font: 15pt sans-serif;
+	padding: 37px 0 0 16px;
+}
+DIV#table
+{
+	height: 140px;
+	text-align: center;
+	font-size: 20pt;
+	padding-top: 80px;
+}
+DIV#controls
+{
+	margin: 20px;
+	text-align: center;
+}
+DIV#controls
+{
+	padding: 10px;
+}
+DIV#controls INPUT
+{
+	padding: 10px;
+	margin: 10px;
+	font-size: 15pt;
+}
+SPAN.bust
+{
+	color: #FF0000;
+	font-size: 15pt;
+}
+SPAN.win
+{
+	color: #60E560;
+	font-size: 15pt;
+}
+.hand UL
+{
+	list-style: none;
+	text-indent: -1000em;
+	/*[disabled]width:500px;*/
+	margin: 0 auto;
+}
+.hand LI
+{
+	height: 97px;
+	width: 73px;
+	background: no-repeat;
+	/*[disabled]display:block;*/
+	float: left;
+	margin: 0 10px;
+}
+/*card faces*/
+.hand LI.hi
+{
+	background: url(/images/b.gif);
+}
+/*clubs*/
+.hand LI.ca
+{
+	background: url(/images/ac.gif);
+}
+.hand LI.c2
+{
+	background: url(/images/2c.gif);
+}
+.hand LI.c3
+{
+	background: url(/images/3c.gif);
+}
+.hand LI.c4
+{
+	background: url(/images/4c.gif);
+}
+.hand LI.c5
+{
+	background: url(/images/5c.gif);
+}
+.hand LI.c6
+{
+	background: url(/images/6c.gif);
+}
+.hand LI.c7
+{
+	background: url(/images/7c.gif);
+}
+.hand LI.c8
+{
+	background: url(/images/8c.gif);
+}
+.hand LI.c9
+{
+	background: url(/images/9c.gif);
+}
+.hand LI.ct
+{
+	background: url(/images/tc.gif);
+}
+.hand LI.cj
+{
+	background: url(/images/jc.gif);
+}
+.hand LI.cq
+{
+	background: url(/images/qc.gif);
+}
+.hand LI.ck
+{
+	background: url(/images/kc.gif);
+}
+/*diamonds*/
+.hand LI.da
+{
+	background: url(/images/ad.gif);
+}
+.hand LI.d2
+{
+	background: url(/images/2d.gif);
+}
+.hand LI.d3
+{
+	background: url(/images/3d.gif);
+}
+.hand LI.d4
+{
+	background: url(/images/4d.gif);
+}
+.hand LI.d5
+{
+	background: url(/images/5d.gif);
+}
+.hand LI.d6
+{
+	background: url(/images/6d.gif);
+}
+.hand LI.d7
+{
+	background: url(/images/7d.gif);
+}
+.hand LI.d8
+{
+	background: url(/images/8d.gif);
+}
+.hand LI.d9
+{
+	background: url(/images/9d.gif);
+}
+.hand LI.dt
+{
+	background: url(/images/td.gif);
+}
+.hand LI.dj
+{
+	background: url(/images/jd.gif);
+}
+.hand LI.dq
+{
+	background: url(/images/qd.gif);
+}
+.hand LI.dk
+{
+	background: url(/images/kd.gif);
+}
+/*hearts*/
+.hand LI.ha
+{
+	background: url(/images/ah.gif);
+}
+.hand LI.h2
+{
+	background: url(/images/2h.gif);
+}
+.hand LI.h3
+{
+	background: url(/images/3h.gif);
+}
+.hand LI.h4
+{
+	background: url(/images/4h.gif);
+}
+.hand LI.h5
+{
+	background: url(/images/5h.gif);
+}
+.hand LI.h6
+{
+	background: url(/images/6h.gif);
+}
+.hand LI.h7
+{
+	background: url(/images/7h.gif);
+}
+.hand LI.h8
+{
+	background: url(/images/8h.gif);
+}
+.hand LI.h9
+{
+	background: url(/images/9h.gif);
+}
+.hand LI.ht
+{
+	background: url(/images/th.gif);
+}
+.hand LI.hj
+{
+	background: url(/images/jh.gif);
+}
+.hand LI.hq
+{
+	background: url(/images/qh.gif);
+}
+.hand LI.hk
+{
+	background: url(/images/kh.gif);
+}
+/*spades*/
+.hand LI.sa
+{
+	background: url(/images/as.gif);
+}
+.hand LI.s2
+{
+	background: url(/images/2s.gif);
+}
+.hand LI.s3
+{
+	background: url(/images/3s.gif);
+}
+.hand LI.s4
+{
+	background: url(/images/4s.gif);
+}
+.hand LI.s5
+{
+	background: url(/images/5s.gif);
+}
+.hand LI.s6
+{
+	background: url(/images/6s.gif);
+}
+.hand LI.s7
+{
+	background: url(/images/7s.gif);
+}
+.hand LI.s8
+{
+	background: url(/images/8s.gif);
+}
+.hand LI.s9
+{
+	background: url(/images/9s.gif);
+}
+.hand LI.st
+{
+	background: url(/images/ts.gif);
+}
+.hand LI.sj
+{
+	background: url(/images/js.gif);
+}
+.hand LI.sq
+{
+	background: url(/images/qs.gif);
+}
+.hand LI.sk
+{
+	background: url(/images/ks.gif);
+}

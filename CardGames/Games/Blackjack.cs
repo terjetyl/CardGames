@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CardGames.Games
 {
@@ -10,29 +7,86 @@ namespace CardGames.Games
     {
         //private List<Deck> decks = new List<Deck>();
 
-        private int dealerScore = 0, playerScore = 0, drawCount = 0;
-        private Deck deck;
-        private Hand playerHand = new Hand(), dealerHand = new Hand();
-        private bool playerBust = false, dealerBust = false;
-        private bool gameInProgress = false;
-        private GameOverEventArgs gameOverArgs = null;
+        private int _dealerScore;
+        private int _drawCount;
+        private int _playerScore;
+        private bool _dealerBust;
+        private Hand _dealerHand;
+        private Deck _deck;
+        private bool _gameInProgress;
+        private GameOverEventArgs _gameOverArgs;
+        private bool _playerBust;
+        private Hand _playerHand;
 
 
-        public Hand PlayerHand { get { return playerHand; } }
-        public Hand DealerHand { get { return dealerHand; } }
-        public int DealerScore { get { return dealerScore; } }
-        public int PlayerScore { get { return playerScore; } }
-        public int DrawCount { get { return drawCount; } }
-        public bool PlayerBust { get { return playerBust; } }
-        public bool DealerBust { get { return dealerBust; } }
-        public bool InProgress { get { return gameInProgress; } }
-        public GameOverEventArgs GameOverArgs { get { return gameOverArgs; } }
+        public Hand PlayerHand
+        {
+            get { return _playerHand; }
+        }
 
-        
+        public Hand DealerHand
+        {
+            get { return _dealerHand; }
+        }
+
+        public int DealerScore
+        {
+            get { return _dealerScore; }
+        }
+
+        public int PlayerScore
+        {
+            get { return _playerScore; }
+        }
+
+        public int DrawCount
+        {
+            get { return _drawCount; }
+        }
+
+        public bool PlayerBust
+        {
+            get { return _playerBust; }
+        }
+
+        public bool DealerBust
+        {
+            get { return _dealerBust; }
+        }
+
+        public bool InProgress
+        {
+            get { return _gameInProgress; }
+        }
+
+        public GameOverEventArgs GameOverArgs
+        {
+            get { return _gameOverArgs; }
+        }
+
 
         // soft totals are those that use an ace as 11
-        public int DealerSoftTotal { get { return getSoftHandTotal(dealerHand); } }
-        public int PlayerSoftTotal { get { return getSoftHandTotal(playerHand); } }
+        public int DealerSoftTotal
+        {
+            get { return getSoftHandTotal(_dealerHand); }
+        }
+
+        public int PlayerSoftTotal
+        {
+            get { return getSoftHandTotal(_playerHand); }
+        }
+
+        // eval totals get the hand value to evaluate scores by (either hard or soft total)
+        private int dealerEvalTotal
+        {
+            get { return getEvalTotal(_dealerHand); }
+        }
+
+        private int playerEvalTotal
+        {
+            get { return getEvalTotal(_playerHand); }
+        }
+
         private int getSoftHandTotal(Hand hand)
         {
             int total = hand.HandTotal;
@@ -40,7 +94,7 @@ namespace CardGames.Games
             // search the hand for an ace
             foreach (Card card in hand.Cards)
             {
-                if ((int)card.Rank == 1)
+                if ((int) card.Rank == 1)
                 {
                     // if an ace is found, add 10 to the total
                     total = total + 10;
@@ -50,9 +104,6 @@ namespace CardGames.Games
             return total;
         }
 
-        // eval totals get the hand value to evaluate scores by (either hard or soft total)
-        private int dealerEvalTotal { get { return getEvalTotal(dealerHand); } }
-        private int playerEvalTotal { get { return getEvalTotal(playerHand); } }
         private int getEvalTotal(Hand hand)
         {
             if (getSoftHandTotal(hand) <= 21)
@@ -66,33 +117,29 @@ namespace CardGames.Games
         }
 
 
-        public Blackjack()
-        {
-            
-        }
-
         /// <summary>
-        /// Begins a new round of Blackjack.
+        ///     Begins a new round of Blackjack.
         /// </summary>
         public void Deal()
         {
-            if (gameInProgress)
+            if (_gameInProgress)
             {
                 return; // do not continue if a game is already in progress.
             }
 
-            gameOverArgs = null;
-            gameInProgress = true;
+            _gameOverArgs = null;
+            _gameInProgress = true;
 
             resetGame();
 
-            dealCardToHand(playerHand);
-            dealCardToHand(dealerHand);
+            dealCardToHand(_playerHand);
+            dealCardToHand(_dealerHand);
 
-            dealCardToHand(playerHand);
-            if (gameInProgress == true) // check if this is still true, as game may have moved into Stand() with player's 2nd card.
+            dealCardToHand(_playerHand);
+            if (_gameInProgress)
+                // check if this is still true, as game may have moved into Stand() with player's 2nd card.
             {
-                dealCardToHand(dealerHand, Visibility.Private);
+                dealCardToHand(_dealerHand, Visibility.Closed);
             }
 
 
@@ -101,43 +148,43 @@ namespace CardGames.Games
 
         private void resetGame()
         {
-            deck = new Deck();
-            deck.Shuffle();
+            _deck = new Deck();
+            _deck.Shuffle();
 
-            playerHand = new Hand();
-            playerHand.HandChanged += new HandChangedEventHandler(playerHand_HandChanged);
-            playerBust = false;
+            _playerHand = new Hand(new Player("ds"));
+            _playerHand.HandChanged += playerHand_HandChanged;
+            _playerBust = false;
 
-            dealerHand = new Hand();
-            dealerHand.HandChanged += new HandChangedEventHandler(dealerHand_HandChanged);
-            dealerBust = false;
+            _dealerHand = new Hand(new Player("ds"));
+            _dealerHand.HandChanged += dealerHand_HandChanged;
+            _dealerBust = false;
         }
 
         /// <summary>
-        /// Deals a face-up card to a hand.
+        ///     Deals a face-up card to a hand.
         /// </summary>
-        /// <param name="hand">The hand to deal to.</param>
-        /// <returns>Returns true if deal was successful, false if unsuccessful (no cards left in deck).</returns>
+        /// <param name="hand"> The hand to deal to. </param>
+        /// <returns> Returns true if deal was successful, false if unsuccessful (no cards left in deck). </returns>
         private bool dealCardToHand(Hand hand)
         {
-            return dealCardToHand(hand, Visibility.Public);
+            return dealCardToHand(hand, Visibility.Open);
         }
 
         /// <summary>
-        /// Deals a card to a hand with a specified visibilty
+        ///     Deals a card to a hand with a specified visibilty
         /// </summary>
-        /// <param name="hand">The hand to deal to.</param>
-        /// <param name="visibility">The visibilty of the card.</param>
-        /// <returns>Returns true if deal was successful, false if unsuccessful (no cards left in deck).</returns>
+        /// <param name="hand"> The hand to deal to. </param>
+        /// <param name="visibility"> The visibilty of the card. </param>
+        /// <returns> Returns true if deal was successful, false if unsuccessful (no cards left in deck). </returns>
         private bool dealCardToHand(Hand hand, Visibility visibility)
         {
-            if (deck.Cards.Count == 0)
+            if (_deck.Cards.Count == 0)
             {
                 return false;
             }
 
-            Card card = deck.Cards[0];
-            deck.Cards.RemoveAt(0);
+            Card card = _deck.Cards[0];
+            _deck.Cards.RemoveAt(0);
 
             card.Visibility = visibility;
             hand.AddCard(card);
@@ -145,41 +192,41 @@ namespace CardGames.Games
         }
 
         /// <summary>
-        /// Causes the player to hit and receive a new card.
+        ///     Causes the player to hit and receive a new card.
         /// </summary>
         public void Hit()
         {
-            if (gameInProgress == false)
+            if (_gameInProgress == false)
             {
                 return; // don't continue unless a game is in progress.
             }
 
-            dealCardToHand(playerHand);
+            dealCardToHand(_playerHand);
         }
 
 
         /// <summary>
-        /// Passes gameplay over to the dealer.
+        ///     Passes gameplay over to the dealer.
         /// </summary>
         public void Stand()
         {
-            if (gameInProgress == false)
+            if (_gameInProgress == false)
             {
                 return; // don't continue unless a game is in progress.
             }
 
             // reveal the hole card (unless not yet dealt, which can be the case when player is dealt 21)
-            if (dealerHand.Cards.Count == 2)
+            if (_dealerHand.Cards.Count == 2)
             {
-                dealerHand.Cards[1].Visibility = Visibility.Public;
+                _dealerHand.Cards[1].Visibility = Visibility.Open;
                 OnDealerHandChanged(EventArgs.Empty);
             }
 
-            
+
             // dealer hits until hand is 17 or over (dealer stands on both hard and soft 17)
-            for (; dealerHand.HandTotal < 17 && DealerSoftTotal < 17; )
+            for (; _dealerHand.HandTotal < 17 && DealerSoftTotal < 17;)
             {
-                dealCardToHand(dealerHand);
+                dealCardToHand(_dealerHand);
 
                 // TODO (maybe): break out of loop if no cards left in deck (should never happen in a single player game)
             }
@@ -187,83 +234,75 @@ namespace CardGames.Games
             // when dealer has reached 17+, evaluate the scores
             evaluateScores();
 
-            gameInProgress = false;
+            _gameInProgress = false;
         }
 
-        void playerHand_HandChanged(object sender, EventArgs e)
+        private void playerHand_HandChanged(object sender, EventArgs e)
         {
-
             OnPlayerHandChanged(EventArgs.Empty);
 
-            if (playerHand.HandTotal == 21 || PlayerSoftTotal == 21)
+            if (_playerHand.HandTotal == 21 || PlayerSoftTotal == 21)
             {
                 // automatically stand if player's total is 21
                 Stand();
             }
-            else if (playerHand.HandTotal > 21)
+            else if (_playerHand.HandTotal > 21)
             {
-                playerBust = true;
+                _playerBust = true;
                 OnBust(new BustEventArgs(Person.Player));
                 evaluateScores();
             }
         }
 
 
-        void dealerHand_HandChanged(object sender, EventArgs e)
+        private void dealerHand_HandChanged(object sender, EventArgs e)
         {
-
             OnDealerHandChanged(EventArgs.Empty);
 
-            if (dealerHand.HandTotal > 21) 
+            if (_dealerHand.HandTotal > 21)
             {
-                dealerBust = true;
+                _dealerBust = true;
                 OnBust(new BustEventArgs(Person.Dealer));
             }
-
         }
 
 
         private void evaluateScores()
         {
-
-            if (playerBust)
+            if (_playerBust)
             {
-                dealerScore++;
-                gameOverArgs = new GameOverEventArgs(Result.PlayerLoses);
+                _dealerScore++;
+                _gameOverArgs = new GameOverEventArgs(Result.PlayerLoses);
             }
-            else if (dealerBust && !playerBust)
+            else if (_dealerBust && !_playerBust)
             {
-                playerScore++;
-                gameOverArgs = new GameOverEventArgs(Result.PlayerWins);
+                _playerScore++;
+                _gameOverArgs = new GameOverEventArgs(Result.PlayerWins);
             }
             else if (playerEvalTotal > dealerEvalTotal)
             {
-                playerScore++;
-                gameOverArgs = new GameOverEventArgs(Result.PlayerWins);
+                _playerScore++;
+                _gameOverArgs = new GameOverEventArgs(Result.PlayerWins);
             }
             else if (playerEvalTotal < dealerEvalTotal)
             {
-                dealerScore++;
-                gameOverArgs = new GameOverEventArgs(Result.PlayerLoses);
+                _dealerScore++;
+                _gameOverArgs = new GameOverEventArgs(Result.PlayerLoses);
             }
             else
             {
-                ++drawCount;
-                gameOverArgs = new GameOverEventArgs(Result.Draw);
+                ++_drawCount;
+                _gameOverArgs = new GameOverEventArgs(Result.Draw);
             }
 
-            gameInProgress = false;
-            OnGameOver(gameOverArgs);
-
+            _gameInProgress = false;
+            OnGameOver(_gameOverArgs);
         }
-
-
-
-
 
         #region eventHandlers
 
         public event HandChangedEventHandler PlayerHandChanged;
+
         protected void OnPlayerHandChanged(EventArgs e)
         {
             if (PlayerHandChanged != null)
@@ -273,6 +312,7 @@ namespace CardGames.Games
         }
 
         public event HandChangedEventHandler DealerHandChanged;
+
         protected void OnDealerHandChanged(EventArgs e)
         {
             if (DealerHandChanged != null)
@@ -282,6 +322,7 @@ namespace CardGames.Games
         }
 
         public event GameOverEventHandler GameOver;
+
         protected void OnGameOver(GameOverEventArgs e)
         {
             if (GameOver != null)
@@ -291,6 +332,7 @@ namespace CardGames.Games
         }
 
         public event BustEventHandler Bust;
+
         protected void OnBust(BustEventArgs e)
         {
             if (Bust != null)
@@ -300,6 +342,7 @@ namespace CardGames.Games
         }
 
         public event PlayersTurnEventHandler PlayersTurn;
+
         protected void OnPlayersTurn(EventArgs e)
         {
             if (PlayersTurn != null)

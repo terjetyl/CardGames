@@ -1,11 +1,17 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGames", "CardGames\CardGames.csproj", "{AE6B426A-BC1D-4F43-ABB8-ED3BD286C4E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJackOnline", "BlackJackOnline\BlackJackOnline.csproj", "{FD46A3CF-20D8-4E35-B75D-79E385C01B18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJackWinForms", "BlackJackWinForms\BlackJackWinForms.csproj", "{AE18D208-0FEB-4684-B1DF-DD6042E30410}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGames.Tests", "CardGames.Tests\CardGames.Tests.csproj", "{9F20655B-E86F-46A8-8C68-563FF831BFCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGames.ConsoleApp", "CardGames.ConsoleApp\CardGames.ConsoleApp.csproj", "{DC966A44-6C6B-4A1F-8E2F-84D1DDEB1036}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardGames.Web", "CardGames.Web\CardGames.Web.csproj", "{276647BA-62DF-4050-8479-64272D79EEE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +31,18 @@ Global
 		{AE18D208-0FEB-4684-B1DF-DD6042E30410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE18D208-0FEB-4684-B1DF-DD6042E30410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE18D208-0FEB-4684-B1DF-DD6042E30410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F20655B-E86F-46A8-8C68-563FF831BFCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F20655B-E86F-46A8-8C68-563FF831BFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F20655B-E86F-46A8-8C68-563FF831BFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F20655B-E86F-46A8-8C68-563FF831BFCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC966A44-6C6B-4A1F-8E2F-84D1DDEB1036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC966A44-6C6B-4A1F-8E2F-84D1DDEB1036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC966A44-6C6B-4A1F-8E2F-84D1DDEB1036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC966A44-6C6B-4A1F-8E2F-84D1DDEB1036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{276647BA-62DF-4050-8479-64272D79EEE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{276647BA-62DF-4050-8479-64272D79EEE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{276647BA-62DF-4050-8479-64272D79EEE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{276647BA-62DF-4050-8479-64272D79EEE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

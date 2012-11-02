@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CardGames
 {
@@ -10,18 +9,20 @@ namespace CardGames
         /// <summary>
         /// The cards in the hand.
         /// </summary>
-        private List<Card> cards = new List<Card>();
+        private readonly List<Card> _cards = new List<Card>();
         public List<Card> Cards
         {
-            get { return cards; }
+            get { return _cards; }
         }
+
+        private readonly Player _player;
 
         /// <summary>
         /// Creates a new empty hand.
         /// </summary>
-        public Hand()
+        public Hand(Player player)
         {
-            
+            _player = player;
         }
 
         public event HandChangedEventHandler HandChanged;
@@ -39,7 +40,7 @@ namespace CardGames
         /// <param name="card">The Card object to add to the hand.</param>
         public void AddCard(Card card)
         {
-            cards.Add(card);
+            _cards.Add(card);
             OnHandChanged(EventArgs.Empty);
         }
 
@@ -48,7 +49,7 @@ namespace CardGames
         /// </summary>
         public int CardCount
         {
-            get { return cards.Count; }
+            get { return _cards.Count; }
         }
 
         /// <summary>
@@ -59,12 +60,35 @@ namespace CardGames
             get
             {
                 int total = 0;
-                foreach (Card card in cards)
+                foreach (Card card in _cards)
                 {
                     total += (int)card.Rank;
                 }
                 return total;
             }
+        }
+
+        public Card PlayCard(int index)
+        {
+            var card = Cards[index];
+            Cards.Remove(card);
+            return card;
+        }
+
+        public Player Player { get { return _player; } }
+
+        public Card GetCardByShortName(string shortName)
+        {
+            return Cards.SingleOrDefault(o => o.ShortName == shortName);
+        }
+
+        public Card PlayCard(string shortName)
+        {
+            var card = Cards.SingleOrDefault(o => o.ShortName == shortName);
+            if (card == null)
+                return null;
+            Cards.Remove(card);
+            return card;
         }
     }
 }
